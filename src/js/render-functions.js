@@ -2,6 +2,12 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 const list = document.querySelector('.list');
 
+    let lightbox = new SimpleLightbox('.gallery-item a', {
+      captionDelay: 250,
+      captionPosition: 'bottom',
+      captionsData: 'alt',
+    });
+
 export function render(photos) {
     const markup = photos.hits.map((photo) => {
       return `<li class="gallery-item" >
@@ -20,12 +26,6 @@ export function render(photos) {
     </ul>
 </li>`
     }).join('');
-  
-    list.insertAdjacentHTML("beforeend", markup);
-    let lightbox = new SimpleLightbox('.gallery-item a', {
-      captionDelay: 250,
-      captionPosition: 'bottom',
-      captionsData: 'alt',
-    });
+  list.insertAdjacentHTML("beforeend", markup);
   lightbox.refresh();
   }
